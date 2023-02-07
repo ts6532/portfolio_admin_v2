@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { h, ref, type Component } from "vue";
 import { NIcon, NLayout, NLayoutSider, NSpace, NMenu } from "naive-ui";
-import { Apps, Bot } from "@vicons/carbon";
+import { Apps, Bot, Categories, Product, CloudServiceManagement } from "@vicons/carbon";
 import { useRoute, useRouter } from "vue-router";
 
 function renderIcon(icon: Component) {
@@ -15,9 +15,24 @@ const menuOptions = [
     icon: renderIcon(Apps),
   },
   {
+    label: "Настройка",
+    key: "preferences",
+    icon: renderIcon(CloudServiceManagement),
+  },
+  {
     label: "Пользователи",
     key: "users",
     icon: renderIcon(Bot),
+  },
+  {
+    label: "Категории",
+    key: "categories",
+    icon: renderIcon(Categories),
+  },
+  {
+    label: "Проекты",
+    key: "projects",
+    icon: renderIcon(Product),
   },
 ];
 
@@ -53,9 +68,17 @@ function changePage(key: string) {
         </n-layout-sider>
 
         <n-layout embedded>
-          <slot />
+          <main class="main">
+            <slot />
+          </main>
         </n-layout>
       </n-layout>
     </n-layout>
   </n-space>
 </template>
+
+<style scoped>
+.main {
+  padding: 1rem 1.5rem;
+}
+</style>
