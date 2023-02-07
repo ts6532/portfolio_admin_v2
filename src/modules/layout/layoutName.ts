@@ -1,1 +1,1 @@
-export type layoutName = "default" | "simple";
+export type layoutName = "DefaultLayout" | "SimpleLayout";
