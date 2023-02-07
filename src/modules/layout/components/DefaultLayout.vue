@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { h, ref, type Component } from "vue";
-import { NIcon } from "naive-ui";
+import { NIcon, NLayout, NLayoutSider, NSpace, NMenu } from "naive-ui";
 import { Apps, Bot } from "@vicons/carbon";
 import { useRoute, useRouter } from "vue-router";
 
@@ -24,7 +24,7 @@ const menuOptions = [
 const router = useRouter();
 const route = useRoute();
 
-const currentRouteKey = ref(route.name);
+const currentRouteKey = ref<string>(route.name as string);
 
 function changePage(key: string) {
   router.push({ name: key });
@@ -43,8 +43,12 @@ function changePage(key: string) {
           :width="240"
           :native-scrollbar="false"
         >
-          <n-menu value:="currentRouteKey" on-update:value="changePage"
-          :collapsed-width="64" :collapsed-icon-size="22" :options="menuOptions"
+          <n-menu
+            :value="currentRouteKey"
+            @update:value="changePage"
+            :collapsed-width="64"
+            :collapsed-icon-size="22"
+            :options="menuOptions"
           />
         </n-layout-sider>
 
