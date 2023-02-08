@@ -1,1 +1,1 @@
-export { usersRoutes } from "./routes";
+export { usersRoutes } from "./users.routes"

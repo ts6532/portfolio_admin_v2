@@ -15,14 +15,10 @@ const layout = computed(() => {
       ),
   )
 })
-
-const notification = useNotification()
 </script>
 
 <template>
-  <n-message-provider>
-    <component :is="layout" v-if="layout">
-      <slot />
-    </component>
-  </n-message-provider>
+  <component :is="layout" v-if="layout">
+    <slot />
+  </component>
 </template>

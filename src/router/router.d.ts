@@ -1,12 +1,14 @@
-export {};
+export {}
 
-import type { layoutName } from "@modules/layout/layoutName";
+import type { layoutName } from "@modules/layout/layoutName"
 
-import "vue-router";
+import "vue-router"
 
 declare module "vue-router" {
   interface RouteMeta {
     // is optional
-    layoutName?: layoutName;
+    layoutName?: layoutName
+
+    requireAuth?: boolean
   }
 }

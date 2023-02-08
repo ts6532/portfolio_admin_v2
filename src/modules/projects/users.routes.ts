@@ -1,5 +1,6 @@
-import type { RouteRecordRaw } from "vue-router";
-import ProjectsPage from "./ProjectsPage.vue";
+import type { RouteRecordRaw } from "vue-router"
+
+const ProjectsPage = () => import("./ProjectsPage.vue")
 
 export const projectsRoutes: RouteRecordRaw[] = [
   {
@@ -8,4 +9,4 @@ export const projectsRoutes: RouteRecordRaw[] = [
     component: ProjectsPage,
     meta: { layoutName: "DefaultLayout" },
   },
-];
+]

@@ -6,12 +6,18 @@ import { http } from "@shared/http"
 interface IAuthService {
   login: (authForm: AuthForm) => Promise<LoginResponse | undefined>
   getMe: () => Promise<MeResponse | undefined>
+
+  logout: () => Promise<boolean | undefined>
 }
 
 export const authService: IAuthService = {
   login: async (authForm) => {
     try {
-      const res: LoginResponse = await http("login", { body: authForm })
+      console.log({ ...authForm })
+      const res: LoginResponse = await http("login", {
+        method: "POST",
+        body: { ...authForm },
+      })
       return res
     } catch (e) {}
   },
@@ -19,6 +25,13 @@ export const authService: IAuthService = {
   getMe: async () => {
     try {
       const res: MeResponse = await http("me")
+      return res
+    } catch (e) {}
+  },
+
+  logout: async () => {
+    try {
+      const res = await http("logout")
       return res
     } catch (e) {}
   },

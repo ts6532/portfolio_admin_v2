@@ -8,6 +8,7 @@ export const useAuthStore = defineStore("auth", () => {
   const isAuth = ref(false)
 
   async function login(userForm: AuthForm) {
+    console.log("store")
     const response = await authService.login(userForm)
 
     if (response) {
@@ -22,6 +23,14 @@ export const useAuthStore = defineStore("auth", () => {
     if (response) {
       isAuth.value = response.isAuth
       user.value = response.user
+    }
+  }
+
+  async function logout() {
+    const res = await authService.logout()
+    if (res) {
+      isAuth.value = false
+      user.value = ""
     }
   }
 
