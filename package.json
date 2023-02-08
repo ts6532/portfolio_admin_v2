@@ -15,7 +15,9 @@
   "dependencies": {
     "@vicons/carbon": "^0.12.0",
     "naive-ui": "^2.34.3",
+    "ofetch": "^1.0.0",
     "pinia": "^2.0.28",
+    "prettier": "^2.8.4",
     "vfonts": "^0.0.3",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
