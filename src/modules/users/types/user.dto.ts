@@ -1,10 +1,19 @@
-import { CreatedUserDto } from "@modules/users/types/created-user.dto"
-
-export class UserDto extends CreatedUserDto {
+export interface UserDto {
   _id: string
 
-  constructor(data?: Partial<UserDto>) {
-    super(data)
-    if (data?._id) this._id = data._id
-  }
+  password: string
+
+  email: string
+
+  role: string
+
+  isActivated: boolean
+
+  firstname: "string"
 }
+
+export interface CreateUserDto extends Omit<UserDto, "_id"> {}
+
+export interface UpdateUserDto extends Omit<UserDto, "password"> {}
+
+export interface UserItemDto extends Omit<UserDto, "password"> {}
