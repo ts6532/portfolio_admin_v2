@@ -2,7 +2,7 @@ import { ofetch } from "ofetch"
 
 export const http = ofetch.create({
   baseURL: "/api",
-  onResponseError: ({ request, options, response }) => {
+  onResponseError: ({ response }) => {
     console.log(response)
   },
 })
