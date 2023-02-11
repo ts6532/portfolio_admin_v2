@@ -3,7 +3,7 @@ import type {
   UpdateUserDto,
   UserItemDto,
 } from "@modules/users/types/user.dto"
-import { http } from "@shared/http"
+import { http } from "@modules/http/http"
 
 export interface IUserService {
   getUsers: () => Promise<UserItemDto[] | undefined>
