@@ -9,6 +9,7 @@ import {
   Product,
 } from "@vicons/carbon"
 import { useRoute, useRouter } from "vue-router"
+import { RouteNames } from "@shared/constants/RouteNames"
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
@@ -27,7 +28,7 @@ const menuOptions = [
   },
   {
     label: "Пользователи",
-    key: "users",
+    key: RouteNames.USERS_LIST,
     icon: renderIcon(Bot),
   },
   {
