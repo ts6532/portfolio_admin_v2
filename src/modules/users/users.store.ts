@@ -3,12 +3,12 @@ import { defineStore } from "pinia"
 import type {
   CreateUserDto,
   UpdateUserDto,
-  UserItemDto,
-} from "@modules/users/types/user.dto"
+  UserDto,
+} from "@modules/users/types/user"
 import { usersService } from "@modules/users/users.service"
 
 export const useUsersStore = defineStore("users", () => {
-  const users = ref<UserItemDto[]>([])
+  const users = ref<UserDto[]>([])
 
   const loadUsers = async () => {
     const res = await usersService.getUsers()

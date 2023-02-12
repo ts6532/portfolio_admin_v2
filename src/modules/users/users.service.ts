@@ -1,18 +1,16 @@
 import type {
   CreateUserDto,
   UpdateUserDto,
-  UserItemDto,
-} from "@modules/users/types/user.dto"
+  UserDto,
+} from "@modules/users/types/user"
 import { http } from "@modules/http/http"
 
 export interface IUserService {
-  getUsers: () => Promise<UserItemDto[] | undefined>
+  getUsers: () => Promise<UserDto[] | undefined>
 
-  createUser: (newUserModel: CreateUserDto) => Promise<UserItemDto | undefined>
+  createUser: (newUserModel: CreateUserDto) => Promise<UserDto | undefined>
 
-  updateUser: (
-    updateUserModel: UpdateUserDto,
-  ) => Promise<UserItemDto | undefined>
+  updateUser: (updateUserModel: UpdateUserDto) => Promise<UserDto | undefined>
 
   deleteUser: (_id: string) => Promise<boolean | undefined>
 }

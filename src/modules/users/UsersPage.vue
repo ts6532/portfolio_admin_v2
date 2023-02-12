@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { useUsersStore } from "@modules/users/users.store"
 import { NH1 } from "naive-ui"
+import { RouterView, useRoute } from "vue-router"
 
-const { users, loadUsers, createUser, updateUser } = useUsersStore()
-
-loadUsers()
+const route = useRoute()
 </script>
+
 <template>
   <NH1>Users page</NH1>
+
+  <RouterView :key="route" />
 </template>
