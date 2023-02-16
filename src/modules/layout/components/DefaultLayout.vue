@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type Component, h, ref } from "vue"
+import { type Component, h } from "vue"
 import { NIcon, NLayout, NLayoutSider, NMenu, NSpace } from "naive-ui"
 import {
   Apps,
@@ -46,8 +46,6 @@ const menuOptions = [
 const router = useRouter()
 const route = useRoute()
 
-const currentRouteKey = ref<string>(route.name as string)
-
 function changePage(key: string) {
   router.push({ name: key })
 }
@@ -55,31 +53,27 @@ function changePage(key: string) {
 
 <template>
   <n-space vertical>
-    <n-layout>
-      <n-layout has-sider>
-        <n-layout-sider
+    <n-layout has-sider>
+      <n-layout-sider
+        :collapsed-width="64"
+        :native-scrollbar="false"
+        :width="240"
+        bordered
+        collapse-mode="width"
+        show-trigger
+      >
+        <n-menu
+          :collapsed-icon-size="22"
           :collapsed-width="64"
-          :native-scrollbar="false"
-          :width="240"
-          bordered
-          collapse-mode="width"
-          show-trigger
-        >
-          <n-menu
-            :collapsed-icon-size="22"
-            :collapsed-width="64"
-            :options="menuOptions"
-            :value="currentRouteKey"
-            @update:value="changePage"
-          />
-        </n-layout-sider>
+          :options="menuOptions"
+          :value="route.name"
+          @update:value="changePage"
+        />
+      </n-layout-sider>
 
-        <n-layout embedded>
-          <main class="main">
-            <slot />
-          </main>
-        </n-layout>
-      </n-layout>
+      <main class="main">
+        <slot />
+      </main>
     </n-layout>
   </n-space>
 </template>
@@ -88,6 +82,8 @@ function changePage(key: string) {
 .main {
   padding: 1rem 1.5rem;
   height: 100vh;
+  width: 100%;
   box-sizing: border-box;
+  background-color: #f8f9fa;
 }
 </style>
