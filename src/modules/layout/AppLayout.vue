@@ -1,24 +1,18 @@
 <script lang="ts" setup>
-import type { layoutName } from "@modules/layout/layoutName"
-import { computed, defineAsyncComponent } from "vue"
 import { useRoute } from "vue-router"
+import DefaultLayout from "@modules/layout/components/DefaultLayout.vue"
+import SimpleLayout from "@modules/layout/components/SimpleLayout.vue"
 
 const route = useRoute()
 
-const layout = computed(() => {
-  const currentLayout: layoutName = route?.meta?.layoutName || "DefaultLayout"
-
-  return defineAsyncComponent(
-    () =>
-      import(
-        /* @vite-ignore */ `@modules/layout/components/${currentLayout}.vue`
-      ),
-  )
-})
+const layouts = {
+  DefaultLayout,
+  SimpleLayout,
+}
 </script>
 
 <template>
-  <component :is="layout" v-if="layout">
+  <component :is="layouts[route.meta.layoutName]">
     <slot />
   </component>
 </template>

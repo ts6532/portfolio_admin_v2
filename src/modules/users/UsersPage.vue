@@ -8,5 +8,5 @@ const route = useRoute()
 <template>
   <NH1>Users page</NH1>
 
-  <RouterView :key="route" />
+  <RouterView :key="route.name" />
 </template>

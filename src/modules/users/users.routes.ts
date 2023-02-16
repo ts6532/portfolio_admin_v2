@@ -3,7 +3,11 @@ import { UsersRoutesNames } from "@modules/users/usersRoutesNames"
 
 const UsersPage = () => import("@modules/users/UsersPage.vue")
 const UsersList = () => import("@modules/users/components/UsersList.vue")
-const UserPage = () => import("@modules/users/components/UserPage.vue")
+const CreateUserPage = () =>
+  import("@modules/users/components/CreateUserPage.vue")
+
+const UpdateUserPage = () =>
+  import("@modules/users/components/UpdateUserPage.vue")
 
 export const usersRoutes: RouteRecordRaw[] = [
   {
@@ -21,13 +25,13 @@ export const usersRoutes: RouteRecordRaw[] = [
       {
         path: "create",
         name: UsersRoutesNames.USERS_CREATE,
-        component: UserPage,
+        component: CreateUserPage,
         meta: { layoutName: "DefaultLayout", requireAuth: true },
       },
       {
         path: ":_id",
         name: UsersRoutesNames.USERS_UPDATE,
-        component: UserPage,
+        component: UpdateUserPage,
         meta: { layoutName: "DefaultLayout", requireAuth: true },
       },
     ],

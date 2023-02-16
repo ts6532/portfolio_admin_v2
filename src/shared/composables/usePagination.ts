@@ -1,13 +1,15 @@
 import type { PaginationProps } from "naive-ui"
+import type { UnwrapNestedRefs } from "vue"
+import { reactive } from "vue"
 
 interface IUseBasePagination {
-  pagination: PaginationProps
+  pagination: UnwrapNestedRefs<PaginationProps>
 }
 
 type UseBasePagination = () => IUseBasePagination
 
 export const useBasePagination: UseBasePagination = () => {
-  const pagination = {
+  const pagination = reactive({
     page: 1,
     pageSize: 5,
     showSizePicker: true,
@@ -19,7 +21,7 @@ export const useBasePagination: UseBasePagination = () => {
       pagination.pageSize = pageSize
       pagination.page = 1
     },
-  }
+  })
 
   return { pagination }
 }

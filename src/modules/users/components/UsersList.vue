@@ -10,6 +10,8 @@ import {
   NDivider,
   NSpace,
 } from "naive-ui"
+import { useRouter } from "vue-router"
+import { RouteNames } from "@/router/RouteNames"
 
 const store = useUsersStore()
 
@@ -33,19 +35,21 @@ const columns: DataTableColumns<UserDto> = [
     title: "Role",
     key: "role",
   },
-  {
-    title: "Is active",
-    key: "isActivated",
-    render: (user) => (user.isActivated ? "Active" : "Not active"),
-  },
 ]
 
 const { pagination } = useBasePagination()
+
+const router = useRouter()
+function openCreateUserForm() {
+  router.push({ name: RouteNames.USERS_CREATE })
+}
 </script>
 
 <template>
   <n-space align="center" justify="end">
-    <n-button ghost type="primary"> Create new user</n-button>
+    <n-button ghost type="primary" @click="openCreateUserForm">
+      Create new user</n-button
+    >
   </n-space>
 
   <n-divider />

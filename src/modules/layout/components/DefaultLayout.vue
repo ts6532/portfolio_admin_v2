@@ -9,7 +9,7 @@ import {
   Product,
 } from "@vicons/carbon"
 import { useRoute, useRouter } from "vue-router"
-import { RouteNames } from "@shared/constants/RouteNames"
+import { RouteNames } from "@/router/RouteNames"
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })

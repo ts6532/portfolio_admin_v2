@@ -17,22 +17,37 @@ const props = defineProps<{
   formSchema: IFormSchema[]
   rules: FormRules
   formValue: Record<string | number, any>
+  submitLabel: string
 }>()
+
+const emit = defineEmits<{
+  (e: "submit", model: Record<string | number, any>): void
+}>()
+
+const model = ref(props.formValue)
+
+const handleValidateClick = (e: MouseEvent) => {
+  e.preventDefault()
+
+  formRef.value?.validate((errors) => {
+    if (!errors) emit("submit", model.value)
+  })
+}
 </script>
 
 <template>
   <n-form
     ref="formRef"
     :label-width="80"
-    :model="formValue"
-    :rules="rules"
+    :model="model"
+    :rules="props.rules"
     size="small"
   >
-    <template v-for="item in formSchema" :key="item.key">
-      <n-form-item :label="item.label" :path="item.key">
+    <template v-for="item in props.formSchema" :key="item.key">
+      <n-form-item :label="item.renderOptions.label" :path="item.key">
         <template v-if="item.renderOptions.type === 'input'">
           <n-input
-            v-model:value="formValue[item.key]"
+            v-model:value="model[item.key]"
             :placeholder="
               item.renderOptions.inputProps?.placeholder ?? item.label
             "
@@ -41,15 +56,17 @@ const props = defineProps<{
 
         <template v-if="item.renderOptions.type === 'select'">
           <n-select
-            v-model:value="formValue[item.key]"
+            v-model:value="model[item.key]"
             :options="item.renderOptions.selectProps?.options ?? []"
           ></n-select>
         </template>
       </n-form-item>
     </template>
 
-    <n-form-item>
-      <n-button @click="handleValidateClick"> Validate</n-button>
+    <n-form-item justify="end">
+      <n-button @click="handleValidateClick">{{
+        submitLabel ?? "Validate"
+      }}</n-button>
     </n-form-item>
   </n-form>
 </template>

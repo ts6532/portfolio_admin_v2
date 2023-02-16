@@ -7,9 +7,7 @@ export interface User {
 
   role: string
 
-  isActivated: boolean
-
-  firstname: "string"
+  firstname?: string
 }
 
 export interface CreateUserDto extends Omit<User, "_id"> {}
