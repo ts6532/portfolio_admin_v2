@@ -1,5 +1,4 @@
 import type { RouteRecordRaw } from "vue-router"
-import { UsersRoutesNames } from "@modules/users/usersRoutesNames"
 
 const UsersPage = () => import("@modules/users/UsersPage.vue")
 const UsersList = () => import("@modules/users/components/UsersList.vue")
@@ -8,6 +7,16 @@ const CreateUserPage = () =>
 
 const UpdateUserPage = () =>
   import("@modules/users/components/UpdateUserPage.vue")
+
+export enum UsersRoutesNames {
+  USERS = "users",
+
+  USERS_LIST = "users-list",
+
+  USERS_CREATE = "users-create",
+
+  USERS_UPDATE = "users-update",
+}
 
 export const usersRoutes: RouteRecordRaw[] = [
   {

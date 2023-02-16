@@ -4,8 +4,12 @@ import type { FormInst } from "naive-ui"
 import { NButton, NForm, NFormItem, NInput } from "naive-ui"
 import { AuthForm } from "@modules/auth/types/AuthForm"
 import { useAuthStore } from "@modules/auth"
+import { useRouter } from "vue-router"
+import { RouteNames } from "@/router/RouteNames"
 
 const store = useAuthStore()
+
+const router = useRouter()
 
 const formRef = ref<FormInst | null>(null)
 
@@ -27,9 +31,14 @@ const rules = {
 
 function handleValidateClick(e: MouseEvent) {
   e.preventDefault()
-  formRef.value?.validate((errors) => {
+  formRef.value?.validate(async (errors) => {
     if (!errors) {
-      store.login(formModel.value)
+      try {
+        await store.login(formModel.value)
+        router.push({ name: RouteNames.HOME })
+      } catch (e) {
+        console.log(e)
+      }
     }
   })
 }
@@ -47,7 +56,7 @@ function handleValidateClick(e: MouseEvent) {
       <n-input
         v-model:value="formModel.email"
         placeholder="Input email"
-        type="email"
+        type="text"
       />
     </n-form-item>
 
