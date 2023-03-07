@@ -1,5 +1,5 @@
+import { authMiddleware } from "entities/auth"
 import { createRouter, createWebHistory } from "vue-router"
-import { checkAuth, getMe } from "./midlewares"
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,7 +15,7 @@ const router = createRouter({
   routes: [],
 })
 
-router.beforeEach(getMe)
-router.beforeEach(checkAuth)
+router.beforeEach(authMiddleware.getMe)
+router.beforeEach(authMiddleware.checkAuth)
 
 export default router

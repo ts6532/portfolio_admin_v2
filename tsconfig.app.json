@@ -9,6 +9,6 @@
     "baseUrl": "./src"
   },
   "paths": {
-    "*": ["shared/types/*.d.ts"]
+    "*": ["shared/types/*.d.ts", "shared/api/*.d.ts"]
   }
 }

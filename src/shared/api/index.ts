@@ -1,2 +1,2 @@
-export * as Api from "./http"
-export * as ApiTypes from "./api-types"
+export * from "./http"
+export * from "./api-types"
