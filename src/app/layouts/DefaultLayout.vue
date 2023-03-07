@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type Component, h } from "vue"
+import { type Component, h, computed } from "vue"
 import { NIcon, NLayout, NLayoutSider, NMenu, NSpace } from "naive-ui"
 import {
   Apps,
@@ -9,7 +9,6 @@ import {
   Product,
 } from "@vicons/carbon"
 import { useRoute, useRouter } from "vue-router"
-import { RouteNames } from "@/router/RouteNames"
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
@@ -28,7 +27,7 @@ const menuOptions = [
   },
   {
     label: "Пользователи",
-    key: RouteNames.USERS_LIST,
+    key: "users",
     icon: renderIcon(Bot),
   },
   {
@@ -44,11 +43,15 @@ const menuOptions = [
 ]
 
 const router = useRouter()
+
 const route = useRoute()
+
+const currentRouteName = computed(() => route.name ? String(route.name) : null)
 
 function changePage(key: string) {
   router.push({ name: key })
 }
+
 </script>
 
 <template>
@@ -66,7 +69,7 @@ function changePage(key: string) {
           :collapsed-icon-size="22"
           :collapsed-width="64"
           :options="menuOptions"
-          :value="route.name"
+          :value="currentRouteName"
           @update:value="changePage"
         />
       </n-layout-sider>

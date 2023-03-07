@@ -6,11 +6,9 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "composite": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@modules/*": ["./src/modules/*"],
-      "@shared/*": ["./src/shared/*"],
-    }
+    "baseUrl": "./src"
+  },
+  "paths": {
+    "*": ["shared/types/*.d.ts"]
   }
 }
