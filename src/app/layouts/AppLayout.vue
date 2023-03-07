@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed } from "vue"
 import { useRoute } from "vue-router"
-import DefaultLayout from "./DefaultLayout.vue";
-import SimpleLayout from "./SimpleLayout.vue";
+import DefaultLayout from "./DefaultLayout.vue"
+import SimpleLayout from "./SimpleLayout.vue"
 
 const route = useRoute()
 
-const currentLayout = computed<LayoutName>(() => route.meta.layoutName ?? 'DefaultLayout')
+const currentLayout = computed<LayoutName>(
+  () => route.meta.layoutName ?? "DefaultLayout",
+)
+
 const layouts = {
   DefaultLayout,
   SimpleLayout,

@@ -1,10 +1,9 @@
+import { useAuthStore } from "entities/auth"
 import type {
   NavigationGuardNext,
   RouteLocationNormalized,
   RouteLocationNormalizedLoaded,
 } from "vue-router"
-
-import { useAuthStore } from "./authStore"
 
 export const getMe = async (
   to: RouteLocationNormalized,

@@ -1,7 +1,4 @@
-import Routes from './Routes.vue'
+import { homeRoutes } from "./home/homeRoutes"
+import { loginRoutes } from "./login/loginRoutes"
 
-export routes = [
-   
-]
-
-export { Routes }
+export const routes = [...loginRoutes, ...homeRoutes]
