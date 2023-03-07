@@ -31,14 +31,11 @@ export const useUsersStore = defineStore("users", () => {
     }
   }
 
-  const deleteUser = async (_id: string) => {
-    const res = await usersService.deleteUser(_id)
+  const deleteUser = async (deletedId: string) => {
+    const res = await usersService.deleteUser(deletedId)
 
     if (res) {
-      const deletedUserIdx = users.value.findIndex((el) => el._id === _id)
-
-      if (deletedUserIdx > -1)
-        users.value = users.value.slice(deletedUserIdx, 1)
+      users.value = users.value.filter(({ _id }) => _id !== deletedId)
     }
   }
   return { users, loadUsers, createUser, updateUser, deleteUser }

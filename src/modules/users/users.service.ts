@@ -42,7 +42,9 @@ export const usersService: IUserService = {
 
   deleteUser: async (_id) => {
     try {
-      return http(`users/${_id}`)
+      return http(`users/${_id}`, {
+        method: "delete",
+      })
     } catch (e) {}
   },
 }

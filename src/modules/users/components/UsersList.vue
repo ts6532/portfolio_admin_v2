@@ -12,6 +12,7 @@ import {
 } from "naive-ui"
 import { useRouter } from "vue-router"
 import { RouteNames } from "@/router/RouteNames"
+import { h } from "vue"
 
 const store = useUsersStore()
 
@@ -35,11 +36,29 @@ const columns: DataTableColumns<UserDto> = [
     title: "Role",
     key: "role",
   },
+  {
+    title: "Actions",
+    key: "_id",
+    render(user) {
+      return h(
+        NButton,
+        {
+          strong: true,
+          secondary: true,
+          type: "error",
+          size: "small",
+          onClick: () => store.deleteUser(user._id),
+        },
+        { default: () => "Delete" },
+      )
+    },
+  },
 ]
 
 const { pagination } = useBasePagination()
 
 const router = useRouter()
+
 function openCreateUserForm() {
   router.push({ name: RouteNames.USERS_CREATE })
 }
@@ -48,8 +67,8 @@ function openCreateUserForm() {
 <template>
   <n-space align="center" justify="end">
     <n-button ghost type="primary" @click="openCreateUserForm">
-      Create new user</n-button
-    >
+      Create new user
+    </n-button>
   </n-space>
 
   <n-divider />
